@@ -10,5 +10,13 @@ class Bill {
       array_push($this->lines, $newLine);
     }
   }
+
+  public function toCSV() {
+    $csvStr = "nb,description,prix unitaire,type,externe,prix HT,taxe,prix TTC\n";
+    foreach ($this->lines as $line) {
+      $csvStr .= $line->toCSV();
+    }
+    return $csvStr;
+  }
 }
  ?>

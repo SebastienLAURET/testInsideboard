@@ -12,7 +12,7 @@ class Bill {
   }
 
   public function toCSV() {
-    $csvStr = "nb,description,prix unitaire,type,externe,prix HT,taxe,prix TTC\n";
+    $csvStr = "nb,description,prix unitaire,type,externe,prix HT,percent taxe,taxe,prix TTC\n";
     foreach ($this->lines as $line) {
       $csvStr .= $line->toCSV();
     }

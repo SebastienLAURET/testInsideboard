@@ -16,14 +16,15 @@ class Line {
 
   public function toCSV() {
     $priceHT = $this->calculatePriceWithoutTaxe();
+    $percentTax = $this->calculatePercenTax();
     $tax = $this->calculateTax();
     $priceTTC = $this->calculatePriceWithTaxe();
-    return "{$this->quantity},{$this->description},{$this->amount},{$this->type},{$this->extern},{$priceHT},{$tax},{$priceTTC}\n";
+    $externStr = $this->extern ? "true" : "false";
+    return "{$this->quantity},{$this->description},{$this->amount},{$this->type},{$externStr},{$priceHT},{$percentTax},{$tax},{$priceTTC}\n";
   }
 
   public function calculatePriceWithTaxe() {
-    $price = $this->calculatePriceWithoutTaxe();
-    return $price + $this->roundTax($price * $this->calculateTax());
+    return $this->calculatePriceWithoutTaxe() + $this->calculateTax();
   }
 
   public function calculatePriceWithoutTaxe() {
@@ -31,6 +32,10 @@ class Line {
   }
 
   public function calculateTax() {
+    return $this->roundTax($this->calculatePriceWithoutTaxe() * $this->calculatePercenTax());
+  }
+
+  public function calculatePercenTax() {
     $basicTax = (in_array($this->type, NOT_TAXED) ? 0 : 0.1);
     $externTax = ($this->extern ? 0.05 : 0);
     return $basicTax + $externTax;

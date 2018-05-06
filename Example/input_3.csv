@@ -1,0 +1,5 @@
+nb,description,prixunitaire,type,externe
+1,flacon de parfum importé,27.99,cosmétique,true
+1,flacon de parfum,18.99,cosmétique,false
+1,boîte de pilules contre la migraine,9.75,médicament,false
+1,boîte de chocolats importée,11.2,alimentation,true

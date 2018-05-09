@@ -16,7 +16,7 @@ Create csv file:
 
 ### Output
 
-See in Example folder outpuit file is created ```output.csv```
+See in Example folder output file is created ```output.csv```
 
 |nb|description|prixunitaire|type|externe|prix HT|percent taxe|taxe|prix TTC|
 |---|---|---|---|---|---|---|---|---|

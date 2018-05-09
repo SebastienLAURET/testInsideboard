@@ -8,12 +8,19 @@ class TaxCalculatorController {
 
 
   public function start() {
+    $totalPriceTTC = 0;
+    $totalTax = 0;
     foreach ($this->bill->lines as $line) {
-      $priceHT = $line->calculatePriceWithoutTaxe();
       $tax = $line->calculateTax();
+      $totalTax += $tax;
+
       $priceTTC = $line->calculatePriceWithTaxe();
-      echo "{$line->description} : {$priceHT} + {$tax} = {$priceTTC}\n";
+      $totalPriceTTC += $priceTTC;
+
+      echo "{$line->quantity} {$line->description} : {$priceTTC}\n";
     }
+    echo "Montant des taxes : {$totalTax}\n";
+    echo "Total : {$totalPriceTTC}\n";
     $this->witeResult();
   }
 
